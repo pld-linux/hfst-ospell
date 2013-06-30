@@ -1,0 +1,11 @@
+--- hfst-ospell-0.2.3/configure.ac.orig	2013-04-27 13:29:50.000000000 +0200
++++ hfst-ospell-0.2.3/configure.ac	2013-06-30 09:23:56.184917852 +0200
+@@ -77,7 +77,7 @@
+ 
+ # Checks for libraries
+ AS_IF([test x$enable_zhfst != xno],
+-      [PKG_CHECK_MODULES([LIBARCHIVE], [libarchive < 3],
++      [PKG_CHECK_MODULES([LIBARCHIVE], [libarchive],
+                   [AC_DEFINE([HAVE_LIBARCHIVE], [1], [Use archives]) 
+                    enable_zhfst=no].
+                   [enable_zhfst=yes])])

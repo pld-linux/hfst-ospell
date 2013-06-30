@@ -1,14 +1,21 @@
 Summary:	hfst-ospell library and toy commandline tester
 Summary(pl.UTF-8):	Biblioteka hfst-ospell i program testowy
 Name:		hfst-ospell
-Version:	0.1.1
+Version:	0.2.3
 Release:	1
 License:	Apache v2.0
 Group:		Applications/Text
 Source0:	http://downloads.sourceforge.net/hfst/%{name}-%{version}.tar.gz
-# Source0-md5:	98ce8831bf70a604c7d217369bb36572
+# Source0-md5:	753cf07c4a857e0a8b0da613f9bf2642
+Patch0:		%{name}-libarchive.patch
 URL:		http://hfst.sourceforge.net/
+BuildRequires:	autoconf >= 2.62
+BuildRequires:	automake >= 1:1.11
+BuildRequires:	libarchive-devel
 BuildRequires:	libstdc++-devel
+BuildRequires:	libxml++-devel >= 2.10.0
+BuildRequires:	libtool >= 2:2.2.6
+BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -49,9 +56,18 @@ Statyczna biblioteka hfst-ospell.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
+	HFST_TXT2FST=/usr/bin/hfst-txt2fst \
+	HFST_FST2FST=/usr/bin/hfst-fst2fst \
+	ZIP=/usr/bin/zip \
 	--disable-silent-rules
 %{__make}
 
@@ -71,14 +87,20 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/hfst-ospell
+%attr(755,root,root) %{_bindir}/hfst-ospell-cicling
+%attr(755,root,root) %{_bindir}/hfst-ospell-fsmnlp-2012
+%attr(755,root,root) %{_bindir}/hfst-ospell-norvig
+%attr(755,root,root) %{_bindir}/hfst-ospell-survey
 %attr(755,root,root) %{_libdir}/libhfstospell.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libhfstospell.so.0
+%attr(755,root,root) %ghost %{_libdir}/libhfstospell.so.2
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libhfstospell.so
 %{_libdir}/libhfstospell.la
+%{_includedir}/ZHfstOspeller*.h
 %{_includedir}/hfst-ol.h
+%{_includedir}/ol-exceptions.h
 %{_includedir}/ospell.h
 %{_pkgconfigdir}/hfstospell.pc
 
