@@ -1,19 +1,20 @@
 Summary:	hfst-ospell library and toy commandline tester
 Summary(pl.UTF-8):	Biblioteka hfst-ospell i program testowy
 Name:		hfst-ospell
-Version:	0.4.0
-Release:	3
+Version:	0.4.2
+Release:	1
 License:	Apache v2.0
 Group:		Applications/Text
-Source0:	http://downloads.sourceforge.net/hfst/hfstospell-%{version}.tar.gz
-# Source0-md5:	077d7175187fd50204586e4348e5b119
+#Source0Download: https://github.com/hfst/hfst-ospell/releases
+Source0:	https://github.com/hfst/hfst-ospell/releases/download/v%{version}/hfstospell-%{version}.tar.gz
+# Source0-md5:	019be86c2461190f12f9889b65117550
 Patch0:		%{name}-demos.patch
-URL:		http://hfst.sourceforge.net/
+URL:		http://hfst.github.io/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	libarchive-devel >= 2
 BuildRequires:	libicu-devel >= 4
-BuildRequires:	libstdc++-devel
+BuildRequires:	libstdc++-devel >= 6:4.3
 BuildRequires:	libxml++2-devel >= 2.10.0
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	pkgconfig
@@ -83,6 +84,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libhfstospell.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -101,13 +105,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/hfst-ospell-office
 %attr(755,root,root) %{_bindir}/hfst-ospell-survey
 %attr(755,root,root) %{_libdir}/libhfstospell.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libhfstospell.so.5
+%attr(755,root,root) %ghost %{_libdir}/libhfstospell.so.7
 %{_mandir}/man1/hfst-ospell.1*
+%{_mandir}/man1/hfst-ospell-office.1*
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libhfstospell.so
-%{_libdir}/libhfstospell.la
 %{_includedir}/ZHfstOspeller*.h
 %{_includedir}/hfst-ol.h
 %{_includedir}/ol-exceptions.h
