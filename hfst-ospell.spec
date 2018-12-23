@@ -1,20 +1,21 @@
 Summary:	hfst-ospell library and toy commandline tester
 Summary(pl.UTF-8):	Biblioteka hfst-ospell i program testowy
 Name:		hfst-ospell
-Version:	0.4.5
-Release:	2
+Version:	0.5.1
+Release:	1
 License:	Apache v2.0
 Group:		Applications/Text
 #Source0Download: https://github.com/hfst/hfst-ospell/releases
 Source0:	https://github.com/hfst/hfst-ospell/releases/download/v%{version}/hfstospell-%{version}.tar.gz
-# Source0-md5:	d38110c9992f956aadaf5b9b76172cad
+# Source0-md5:	3073a4d9f396de735f0a8ad257007497
 Patch0:		%{name}-demos.patch
 URL:		http://hfst.github.io/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.11
-BuildRequires:	libarchive-devel >= 2
+BuildRequires:	libarchive-devel >= 3.0.1
 BuildRequires:	libicu-devel >= 4
-BuildRequires:	libstdc++-devel >= 6:4.7
+# -std=c++14
+BuildRequires:	libstdc++-devel >= 6:5.0
 BuildRequires:	libxml++2-devel >= 2.10.0
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	pkgconfig
@@ -37,9 +38,9 @@ Summary:	Header files for hfst-ospell library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki hfst-ospell
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	libarchive-devel >= 2
+Requires:	libarchive-devel >= 3.0.1
 Requires:	libicu-devel >= 4
-Requires:	libstdc++-devel >= 6:4.7
+Requires:	libstdc++-devel >= 6:5.0
 Requires:	libxml++2-devel >= 2.10.0
 
 %description devel
@@ -105,7 +106,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/hfst-ospell-office
 %attr(755,root,root) %{_bindir}/hfst-ospell-survey
 %attr(755,root,root) %{_libdir}/libhfstospell.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libhfstospell.so.10
+%attr(755,root,root) %ghost %{_libdir}/libhfstospell.so.11
 %{_mandir}/man1/hfst-ospell.1*
 %{_mandir}/man1/hfst-ospell-office.1*
 

@@ -1,6 +1,6 @@
---- hfstospell-0.4.0/main-fsmnlp-2012.cc.orig	2012-09-04 14:43:05.000000000 +0200
-+++ hfstospell-0.4.0/main-fsmnlp-2012.cc	2015-12-28 19:01:30.869303121 +0100
-@@ -255,15 +255,7 @@ zhfst_spell(char* zhfst_filename)
+--- hfstospell-0.5.1/main-fsmnlp-2012.cc.orig	2018-12-23 12:21:00.382926906 +0100
++++ hfstospell-0.5.1/main-fsmnlp-2012.cc	2018-12-23 12:26:11.379590021 +0100
+@@ -254,14 +254,6 @@
      {
        std::cerr << "cannot read zhfst archive " << zhfst_filename << ":" 
            << std::endl
@@ -8,7 +8,7 @@
 -          << "trying to read as legacy automata directory" << std::endl;
 -      speller.read_legacy(zhfst_filename);
 -    }
--  catch (hfst_ol::ZHfstLegacyReadingError zhlre)
+-  catch (hfst_ospell::ZHfstLegacyReadingError zhlre)
 -    {
 -      std::cerr << "cannot read legacy hfst speller dir " << zhfst_filename 
 -          << ":" << std::endl
@@ -16,11 +16,9 @@
 +          << zhzre.what() << "." << std::endl;
        return EXIT_FAILURE;
      }
- 
---- hfstospell-0.4.0/main-ispell.cc.orig	2014-04-28 11:05:20.000000000 +0200
-+++ hfstospell-0.4.0/main-ispell.cc	2015-12-28 18:51:52.375994063 +0100
-@@ -279,20 +279,8 @@ zhfst_spell(char* zhfst_filename, FILE*
-     catch (hfst_ol::ZHfstZipReadingError zhzre)
+--- hfstospell-0.5.1/main-ispell.cc.orig	2018-12-23 12:29:17.532921229 +0100
++++ hfstospell-0.5.1/main-ispell.cc	2018-12-23 12:31:18.382919851 +0100
+@@ -280,19 +280,7 @@
        {
          std::cerr << "cannot read zhfst archive " << zhfst_filename << ":" 
 -          << zhzre.what() << "." << std::endl
@@ -29,15 +27,16 @@
 -          {
 -            speller.read_legacy(zhfst_filename);
 -          }
--        catch (hfst_ol::ZHfstLegacyReadingError zhlre)
+-        catch (hfst_ospell::ZHfstLegacyReadingError zhlre)
 -          {
 -            std::cerr << "cannot fallback to read legacy hfst speller dir " 
 -              << zhfst_filename 
 -              << ":" << std::endl
 -              << zhlre.what() << "." << std::endl;
-+          << zhzre.what() << "." << std::endl;
-             return EXIT_FAILURE;
+-            return EXIT_FAILURE;
 -          }
++          << zhzre.what() << "." << std::endl;
++        return EXIT_FAILURE;
        }
      if (verbose)
        {
