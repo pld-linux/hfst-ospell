@@ -1,6 +1,6 @@
 --- hfstospell-0.5.1/main-fsmnlp-2012.cc.orig	2018-12-23 12:21:00.382926906 +0100
 +++ hfstospell-0.5.1/main-fsmnlp-2012.cc	2018-12-23 12:26:11.379590021 +0100
-@@ -254,14 +254,6 @@
+@@ -254,15 +254,7 @@
      {
        std::cerr << "cannot read zhfst archive " << zhfst_filename << ":" 
            << std::endl
@@ -16,6 +16,7 @@
 +          << zhzre.what() << "." << std::endl;
        return EXIT_FAILURE;
      }
+ 
 --- hfstospell-0.5.1/main-ispell.cc.orig	2018-12-23 12:29:17.532921229 +0100
 +++ hfstospell-0.5.1/main-ispell.cc	2018-12-23 12:31:18.382919851 +0100
 @@ -280,19 +280,7 @@
