@@ -1,13 +1,13 @@
 Summary:	hfst-ospell library and toy commandline tester
 Summary(pl.UTF-8):	Biblioteka hfst-ospell i program testowy
 Name:		hfst-ospell
-Version:	0.5.2
-Release:	5
+Version:	0.5.3
+Release:	1
 License:	Apache v2.0
 Group:		Applications/Text
 #Source0Download: https://github.com/hfst/hfst-ospell/releases
 Source0:	https://github.com/hfst/hfst-ospell/archive/v%{version}/hfstospell-%{version}.tar.gz
-# Source0-md5:	f625099c311cabe6aa595668e60431ac
+# Source0-md5:	a24167e120746209b4096f199f1f7bb6
 Patch0:		%{name}-demos.patch
 URL:		http://hfst.github.io/
 BuildRequires:	autoconf >= 2.62
@@ -16,8 +16,8 @@ BuildRequires:	libarchive-devel >= 3.0.1
 BuildRequires:	libicu-devel >= 4
 # -std=c++14
 BuildRequires:	libstdc++-devel >= 6:5.0
-BuildRequires:	libxml++2-devel >= 2.10.0
 BuildRequires:	libtool >= 2:2.2.6
+BuildRequires:	libxml++2-devel >= 2.10.0
 BuildRequires:	pkgconfig
 Requires:	libxml++2 >= 2.10.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
