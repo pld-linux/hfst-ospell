@@ -9,6 +9,7 @@ Group:		Applications/Text
 Source0:	https://github.com/hfst/hfst-ospell/archive/v%{version}/hfstospell-%{version}.tar.gz
 # Source0-md5:	a24167e120746209b4096f199f1f7bb6
 Patch0:		%{name}-demos.patch
+Patch1:		gcc-13.patch
 URL:		http://hfst.github.io/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.11
@@ -64,6 +65,7 @@ Statyczna biblioteka hfst-ospell.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
